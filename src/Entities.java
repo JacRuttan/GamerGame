@@ -6,8 +6,8 @@ import org.newdawn.slick.SlickException;
 
 public abstract class Entities {
    protected int xpos, ypos, percent;
-   protected Image pic1, pic2, pic3;
-   public Entities(int x, int y, int p, String img1, String img2, String img3) throws SlickException{
+   protected Image img [] = new Image[3];
+   public Entities(int x, int y, int p, Image img1, Image img2, Image img3) throws SlickException{
        xpos = x;
        ypos = y;
        percent = p;
@@ -17,6 +17,6 @@ public abstract class Entities {
    }
    public abstract void shoot();
    public abstract void heal();
-   public abstract void draw(Graphics g);
+   public abstract void draw(Graphics g, int t);
    public abstract void move();
 }

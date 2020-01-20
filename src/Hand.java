@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -9,17 +10,18 @@ public class Hand extends Entities {
     ArrayList<attk> f = new ArrayList();
     private int xloc, yloc;
     int newp;
-
-    public Hand(int x, int y, int p, String img1, String img2, String img3) throws SlickException {
+    Image imagehand;
+    public Hand(int x, int y, int p, Image img1, Image img2, Image img3) throws SlickException {
         super(x, y, p, img1, img2, img3);
         xloc = x;
         yloc = y;
-
+        //imagehand = img1;
+        percent = 100;
     }
 
     @Override
     public void shoot() {
-        int n;
+    int n;
 
         attk temp;
         n = (int) (Math.random() * 10) + 5;
@@ -59,17 +61,30 @@ public class Hand extends Entities {
     public attk getShot(int pl){
         return f.get(pl);
     }
-    @Override
     public void draw(Graphics g) {
         g.fillOval(xloc, yloc, 100, 100, 100);
         System.out.println(xloc + ", " + yloc);
+        //imagehand.draw(xloc, yloc);
     }
-
+    public Rectangle getHitbox(){
+        Rectangle hitbox = new Rectangle(xloc, yloc, 100, 100);
+        return hitbox;
+    }
     
-
+    public void dmg(){
+        percent--;
+    }
+    public boolean gg(){
+        return percent==0;
+}
     @Override
     public void move() {
         newp = (int) (Math.random() * 1000);
         yloc = newp;
+    }
+
+    @Override
+    public void draw(Graphics g, int t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
